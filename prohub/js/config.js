@@ -1,0 +1,164 @@
+
+window.PROHUB_DEFAULTS =
+{
+  "profile": {
+    "name": "Mark Evans",
+    "title": "Builder - Creator - Dreamer",
+    "bio": "I build practical digital products, systems and business tools.",
+    "eyebrow": "PROHUB PROFILE",
+    "avatar": "asset://avatar-1789081418476",
+    "location": ""
+  },
+  "theme": {
+    "accent": "#62a8ff",
+    "background": "#070b13",
+    "surface": "#111827",
+    "text": "#f8fafc",
+    "muted": "#a7b0c0",
+    "homeNav": "#c7f8fe",
+    "shareBackground": "#073576",
+    "shareText": "#e0e1e1",
+    "sectionText": {
+      "about": "#f8fafc",
+      "contact": "#f8fafc",
+      "portfolio": "#f8fafc",
+      "social": "#f8fafc"
+    },
+    "avatarBorder": {
+      "start": "#f8fafc",
+      "end": "#62a8ff",
+      "angle": 135
+    },
+    "radius": 36
+  },
+  "backgrounds": {
+    "home": "assets/uploads/background-home.png",
+    "about": "",
+    "contact": "",
+    "portfolio": "",
+    "links": ""
+  },
+  "about": {
+    "heading": "I build from the problem backward.",
+    "text": "Not pitch-deck ideas. Not “someday” concepts. Things that work, help, and exist in the real world.",
+    "items": [
+      {
+        "label": "Experience",
+        "value": "20+ Years Web/App Development"
+      },
+      {
+        "label": "UI/UX Design",
+        "value": "10+ Years"
+      },
+      {
+        "label": "Business Managment",
+        "value": "26+ Years"
+      }
+    ]
+  },
+  "qr": {
+    "enabled": true,
+    "mode": "custom",
+    "target": "",
+    "label": "Scan to open profile",
+    "customImage": "assets/uploads/custom-qr.png"
+  },
+  "contact": [
+    {
+      "label": "Phone",
+      "value": "(239) 555 - 1234",
+      "url": "tel:2395551234"
+    },
+    {
+      "label": "Email",
+      "value": "mark@example.com",
+      "url": "mailto:mark@example.com"
+    },
+    {
+      "label": "Website",
+      "value": "https://example.com",
+      "url": "https://example.com"
+    }
+  ],
+  "links": [
+    {
+      "label": "GitHub",
+      "subtitle": "",
+      "url": "https://github.com",
+      "icon": "",
+      "iconPreset": "github",
+      "iconText": "G"
+    },
+    {
+      "label": "LinkedIn",
+      "subtitle": "",
+      "url": "https://linkedin.com",
+      "icon": "",
+      "iconPreset": "linkedin",
+      "iconText": "L"
+    },
+    {
+      "label": "Facebook",
+      "subtitle": "",
+      "url": "https://facebook.com",
+      "icon": "",
+      "iconPreset": "facebook",
+      "iconText": "F"
+    },
+    {
+      "label": "X.com",
+      "subtitle": "",
+      "url": "https://x.com",
+      "icon": "",
+      "iconPreset": "x",
+      "iconText": "X"
+    },
+    {
+      "label": "YouTube",
+      "subtitle": "",
+      "url": "https://youtube.com",
+      "icon": "",
+      "iconPreset": "youtube",
+      "iconText": "Y"
+    },
+    {
+      "label": "TikTok",
+      "subtitle": "",
+      "url": "https://tiktok.com",
+      "icon": "",
+      "iconPreset": "tiktok",
+      "iconText": "T"
+    }
+  ],
+  "portfolio": [
+    {
+      "title": "SyteByte.com",
+      "subtitle": "",
+      "description": "",
+      "url": "https://sytebyte.com",
+      "image": "asset://portfolio-1789083062929-0",
+      "icon": ""
+    },
+    {
+      "title": "Appgega.com",
+      "subtitle": "",
+      "description": "",
+      "url": "https://appdega.com",
+      "image": "asset://portfolio-1789083120955-1",
+      "icon": ""
+    },
+    {
+      "title": "NillaNinja.com",
+      "subtitle": "",
+      "description": "",
+      "url": "https://nillaninja.com",
+      "image": "asset://portfolio-1789083217613-2",
+      "icon": ""
+    }
+  ]
+};
+
+window.PROHUB_CONFIG =
+structuredClone(window.PROHUB_DEFAULTS);
+
+window.PROHUB_EXPORTED = true;
