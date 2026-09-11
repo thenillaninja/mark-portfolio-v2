@@ -6,7 +6,7 @@ window.PROHUB_DEFAULTS =
     "title": "Builder - Creator - Dreamer",
     "bio": "I build practical digital products, systems and business tools.",
     "eyebrow": "PROHUB PROFILE",
-    "avatar": "asset://avatar-1789081418476",
+    "avatar": "assets/uploads/avatar.png",
     "location": ""
   },
   "theme": {
@@ -136,7 +136,7 @@ window.PROHUB_DEFAULTS =
       "subtitle": "",
       "description": "",
       "url": "https://sytebyte.com",
-      "image": "asset://portfolio-1789083062929-0",
+      "image": "assets/uploads/portfolio-0.png",
       "icon": ""
     },
     {
@@ -144,7 +144,7 @@ window.PROHUB_DEFAULTS =
       "subtitle": "",
       "description": "",
       "url": "https://appdega.com",
-      "image": "asset://portfolio-1789083120955-1",
+      "image": "assets/uploads/portfolio-1.png",
       "icon": ""
     },
     {
@@ -152,7 +152,7 @@ window.PROHUB_DEFAULTS =
       "subtitle": "",
       "description": "",
       "url": "https://nillaninja.com",
-      "image": "asset://portfolio-1789083217613-2",
+      "image": "assets/uploads/portfolio-2.png",
       "icon": ""
     }
   ]
