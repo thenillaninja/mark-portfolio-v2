@@ -5,7 +5,7 @@ window.PROHUB_DEFAULTS =
     "name": "Mark Evans",
     "title": "Builder - Creator - Dreamer",
     "bio": "I build practical digital products, systems and business tools.",
-    "eyebrow": "PROHUB PROFILE",
+    "eyebrow": "ByoCard PROFILE",
     "avatar": "assets/uploads/avatar.png",
     "location": ""
   },
@@ -128,6 +128,30 @@ window.PROHUB_DEFAULTS =
       "icon": "",
       "iconPreset": "tiktok",
       "iconText": "T"
+    },
+    {
+      "label": "Instagram",
+      "subtitle": "",
+      "url": "https://instagram.com",
+      "icon": "",
+      "iconPreset": "instagram",
+      "iconText": "I"
+    },
+    {
+      "label": "WhatsApp",
+      "subtitle": "",
+      "url": "https://whatsapp.com",
+      "icon": "",
+      "iconPreset": "whatsapp",
+      "iconText": "W"
+    },
+    {
+      "label": "Patreon",
+      "subtitle": "",
+      "url": "https://patreon.com",
+      "icon": "",
+      "iconPreset": "patreon",
+      "iconText": "P"
     }
   ],
   "portfolio": [

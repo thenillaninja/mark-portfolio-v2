@@ -260,7 +260,7 @@
   }
 
   function saveContact() {
-    const name = config.profile?.name || "ProHUB Contact";
+    const name = config.profile?.name || "BYOCard Contact";
     const title = config.profile?.title || "";
     const email = getContactValue("email");
     const phone = getContactValue("phone");
@@ -321,7 +321,7 @@
   }
 
   async function shareProfile() {
-    const title = config.profile?.name || "ProHUB Profile";
+    const title = config.profile?.name || "BYOCard Profile";
     const text = config.profile?.bio || "";
     const url = window.location.href;
 
