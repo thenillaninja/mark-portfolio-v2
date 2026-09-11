@@ -194,6 +194,183 @@
     `).join("");
   }
 
+  function escapeVCard(value = "") {
+    return String(value)
+      .replace(/\\/g, "\\\\")
+      .replace(/\n/g, "\\n")
+      .replace(/,/g, "\\,")
+      .replace(/;/g, "\\;");
+  }
+
+  function getContactValue(type) {
+    const items = config.contact || [];
+
+    const match = items.find(item => {
+      const label = String(item.label || "").toLowerCase();
+      const url = String(item.url || "").toLowerCase();
+
+      if (type === "email") {
+        return label.includes("email") || url.startsWith("mailto:");
+      }
+
+      if (type === "phone") {
+        return (
+          label.includes("phone") ||
+          label.includes("mobile") ||
+          label.includes("cell") ||
+          url.startsWith("tel:")
+        );
+      }
+
+      if (type === "website") {
+        return (
+          label.includes("website") ||
+          label.includes("web") ||
+          label.includes("portfolio") ||
+          url.startsWith("http://") ||
+          url.startsWith("https://")
+        );
+      }
+
+      if (type === "address") {
+        return (
+          label.includes("address") ||
+          label.includes("location")
+        );
+      }
+
+      return false;
+    });
+
+    if (!match) return "";
+
+    if (type === "email" && match.url?.startsWith("mailto:")) {
+      return match.url.replace(/^mailto:/i, "");
+    }
+
+    if (type === "phone" && match.url?.startsWith("tel:")) {
+      return match.url.replace(/^tel:/i, "");
+    }
+
+    if (type === "website" && match.url) {
+      return match.url;
+    }
+
+    return match.value || "";
+  }
+
+  function saveContact() {
+    const name = config.profile?.name || "ProHUB Contact";
+    const title = config.profile?.title || "";
+    const email = getContactValue("email");
+    const phone = getContactValue("phone");
+    const website = getContactValue("website");
+    const address = getContactValue("address");
+
+    const lines = [
+      "BEGIN:VCARD",
+      "VERSION:3.0",
+      `FN:${escapeVCard(name)}`,
+      `N:${escapeVCard(name)};;;;`
+    ];
+
+    if (title) {
+      lines.push(`TITLE:${escapeVCard(title)}`);
+    }
+
+    if (email) {
+      lines.push(`EMAIL;TYPE=INTERNET:${escapeVCard(email)}`);
+    }
+
+    if (phone) {
+      lines.push(`TEL;TYPE=CELL:${escapeVCard(phone)}`);
+    }
+
+    if (website) {
+      lines.push(`URL:${escapeVCard(website)}`);
+    }
+
+    if (address) {
+      lines.push(`ADR;TYPE=HOME:;;${escapeVCard(address)};;;;`);
+    }
+
+    lines.push("END:VCARD");
+
+    const blob = new Blob(
+      [lines.join("\r\n")],
+      { type: "text/vcard;charset=utf-8" }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+
+    const safeName = name
+      .trim()
+      .replace(/[^a-z0-9]+/gi, "-")
+      .replace(/^-+|-+$/g, "")
+      .toLowerCase() || "contact";
+
+    a.href = url;
+    a.download = `${safeName}.vcf`;
+
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  async function shareProfile() {
+    const title = config.profile?.name || "ProHUB Profile";
+    const text = config.profile?.bio || "";
+    const url = window.location.href;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title,
+          text,
+          url
+        });
+
+        return;
+      }
+
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+        alert("Profile link copied.");
+        return;
+      }
+
+      window.prompt("Copy this profile link:", url);
+
+    } catch (error) {
+      if (error?.name !== "AbortError") {
+        console.error("Share failed:", error);
+      }
+    }
+  }
+
+  const saveContactBtn =
+    document.getElementById("saveContactBtn");
+
+  if (saveContactBtn) {
+    saveContactBtn.addEventListener(
+      "click",
+      saveContact
+    );
+  }
+
+  const shareBtn =
+    document.getElementById("shareBtn");
+
+  if (shareBtn) {
+    shareBtn.addEventListener(
+      "click",
+      shareProfile
+    );
+  }
+
   const contactList = document.querySelector(".contact-list");
 
   if (contactList) {
