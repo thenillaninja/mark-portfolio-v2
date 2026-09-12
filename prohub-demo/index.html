@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0f1c" />
+  <title>BYOCard Profile</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <div class="viewport" id="viewport">
+      <div class="card-stage" id="cardStage">
+
+        <!-- HOME -->
+        <section class="profile-card hub-card card-home" data-card="home">
+          <div class="card-overlay"></div>
+
+          <button class="swipe-indicator swipe-up" data-target="portfolio" aria-label="Open portfolio"><span>Portfolio</span><span class="gesture-chevrons vertical up"></span></button>
+
+          <button class="swipe-indicator swipe-right" data-target="contact" aria-label="Open contact"><span>Contact</span><span class="gesture-chevrons horizontal right"></span></button>
+
+          <button class="swipe-indicator swipe-down" data-target="links" aria-label="Open links"><span class="gesture-chevrons vertical down"></span><span>Social</span></button>
+
+          <button class="swipe-indicator swipe-left" data-target="about" aria-label="Open about"><span>About</span><span class="gesture-chevrons horizontal left"></span></button>
+
+          <div class="profile-content">
+            <div class="avatar-wrap">
+              <img
+                class="avatar"
+                src="https://placehold.co/180x180/172033/eaf1ff?text=ME"
+                alt="Profile"
+              />
+            </div>
+
+            <p class="eyebrow">BYOCARD PROFILE</p>
+            <h1>Mark Evans</h1>
+
+            <p class="role">
+              Designer · Developer · Builder
+            </p>
+
+            <p class="bio">
+              I build useful digital products, business tools and weird ideas
+              that probably shouldn't work as well as they do.
+            </p>
+
+            <div class="quick-actions">
+              <button id="saveContactBtn" class="action-button">Save Contact</button>
+              <button id="shareBtn" class="action-button secondary">Share</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="profile-card hub-card card-about" data-card="about">
+          <button class="back-home back-right" data-target="home" aria-label="Back to profile"><span class="gesture-chevrons horizontal right"></span></button>
+
+          <div class="section-content">
+            <p class="eyebrow">ABOUT</p>
+            <h2>Built around the person.</h2>
+            <p class="section-lead">
+              A flexible place for a short bio, experience, philosophy,
+              specialties, credentials, or whatever actually matters.
+            </p>
+
+            <div class="info-grid">
+              <article class="info-tile">
+                <span>Focus</span>
+                <strong>Design + Development</strong>
+              </article>
+
+              <article class="info-tile">
+                <span>Based in</span>
+                <strong>United States</strong>
+              </article>
+
+              <article class="info-tile">
+                <span>Style</span>
+                <strong>Lean, practical, useful</strong>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="profile-card hub-card card-contact" data-card="contact">
+          <button class="back-home back-left" data-target="home" aria-label="Back to profile"><span class="gesture-chevrons horizontal left"></span></button>
+
+          <div class="section-content">
+            <p class="eyebrow">CONTACT</p>
+            <h2>Let's connect.</h2>
+
+            <div class="contact-list">
+              <a href="mailto:mark@example.com" class="contact-row">
+                <span>Email</span>
+                <strong>mark@example.com</strong>
+              </a>
+
+              <a href="#" class="contact-row">
+                <span>Website</span>
+                <strong>yourdomain.com</strong>
+              </a>
+
+              <a href="#" class="contact-row">
+                <span>Phone</span>
+                <strong>Optional</strong>
+              </a>
+            </div>
+
+            <div class="contact-qr" id="contactQrBlock">
+              <div class="qr-code" id="contactQr"></div>
+              <p id="contactQrLabel">Scan to open profile</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- PORTFOLIO -->
+        <section class="profile-card hub-card card-portfolio" data-card="portfolio">
+          <button class="back-home back-bottom" data-target="home" aria-label="Back to profile"><span class="gesture-chevrons vertical down"></span></button>
+
+          <div class="section-content">
+            <p class="eyebrow">PORTFOLIO</p>
+            <h2>Selected work.</h2>
+
+            <div class="project-list">
+              <a href="#" class="project-card">
+                <div>
+                  <span>Project 01</span>
+                  <strong>SyteByte</strong>
+                </div>
+                <b>↗</b>
+              </a>
+
+              <a href="#" class="project-card">
+                <div>
+                  <span>Project 02</span>
+                  <strong>Appdega</strong>
+                </div>
+                <b>↗</b>
+              </a>
+
+              <a href="#" class="project-card">
+                <div>
+                  <span>Project 03</span>
+                  <strong>Business Dojo</strong>
+                </div>
+                <b>↗</b>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- LINKS -->
+        <section class="profile-card hub-card card-links" data-card="links">
+          <button class="back-home back-top" data-target="home" aria-label="Back to profile"><span class="gesture-chevrons vertical up"></span></button>
+
+          <div class="section-content">
+            <p class="eyebrow">SOCIAL</p>
+
+            <div class="links-grid"></div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="js/vendor/qrcode.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

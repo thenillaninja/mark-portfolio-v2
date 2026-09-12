@@ -1,0 +1,1526 @@
+:root {
+  --bg: #070b13;
+  --surface: #111827;
+  --text: #f8fafc;
+  --muted: #a7b0c0;
+  --accent: #62a8ff;
+  --accent-soft: rgba(98, 168, 255, 0.16);
+  --border: rgba(255, 255, 255, 0.11);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+body {
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+.profile-card {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 620px;
+  overflow: hidden;
+  isolation: isolate;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(59, 130, 246, 0.32),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 82% 74%,
+      rgba(124, 58, 237, 0.25),
+      transparent 36%
+    ),
+    linear-gradient(
+      155deg,
+      #18243a 0%,
+      #0d1422 48%,
+      #060a12 100%
+    );
+}
+
+.profile-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px
+    );
+
+  background-size: 32px 32px;
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.5),
+    transparent 80%
+  );
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(4, 8, 15, 0.05),
+      rgba(4, 8, 15, 0.45)
+    );
+}
+
+.profile-content {
+  width: min(86%, 430px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.avatar-wrap {
+  width: 132px;
+  height: 132px;
+  padding: 5px;
+  border-radius: 34px;
+  margin-bottom: 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.72),
+      rgba(98,168,255,0.25)
+    );
+
+  box-shadow:
+    0 22px 70px rgba(0,0,0,0.34),
+    0 0 0 1px rgba(255,255,255,0.08);
+}
+
+.avatar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 29px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.role {
+  margin: 16px 0 0;
+  font-size: 1rem;
+  font-weight: 650;
+  color: #d8e4f5;
+}
+
+.bio {
+  margin: 20px auto 0;
+  max-width: 380px;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.action-button {
+  border: 0;
+  border-radius: 16px;
+  min-height: 50px;
+
+  background: var(--accent);
+  color: #07101c;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.action-button.secondary {
+  color: var(--text);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+}
+
+.swipe-indicator {
+  position: absolute;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 8px 11px;
+
+  border: 0;
+  color: rgba(255,255,255,0.72);
+  background: transparent;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  opacity: 0.75;
+}
+
+.swipe-indicator strong {
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.swipe-up {
+  top: max(16px, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column-reverse;
+}
+
+.swipe-down {
+  bottom: max(20px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column;
+}
+
+.swipe-left {
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.swipe-right {
+  right: -18px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.page-dots {
+  position: absolute;
+  bottom: max(76px, calc(env(safe-area-inset-bottom) + 70px));
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 7px;
+}
+
+.page-dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.28);
+}
+
+.page-dots .active {
+  width: 18px;
+  border-radius: 99px;
+  background: var(--accent);
+}
+
+@media (min-width: 800px) {
+  body {
+    overflow: auto;
+  }
+
+  .app-shell {
+    padding: 36px;
+  }
+
+  .profile-card {
+    width: min(100%, 1180px);
+    height: auto;
+    min-height: 720px;
+    border-radius: 36px;
+
+    box-shadow:
+      0 40px 100px rgba(0,0,0,0.45),
+      0 0 0 1px rgba(255,255,255,0.05);
+  }
+}
+
+/* Fix side swipe indicators */
+.swipe-left,
+.swipe-right {
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+  gap: 10px;
+}
+
+.swipe-left {
+  left: 18px;
+}
+
+.swipe-right {
+  right: 18px;
+}
+
+.swipe-left span,
+.swipe-right span {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.swipe-left span {
+  transform: rotate(180deg);
+}
+
+.swipe-left strong,
+.swipe-right strong {
+  transform: none;
+}
+
+/* =========================================================
+   ProHUB 2D swipe stage
+   ========================================================= */
+
+.viewport {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.card-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+}
+
+.card-stage.dragging {
+  cursor: grabbing;
+}
+
+.hub-card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 620px;
+  transition:
+    transform 520ms cubic-bezier(.22,.78,.22,1),
+    opacity 360ms ease;
+  will-change: transform;
+}
+
+.card-home {
+  transform: translate3d(0, 0, 0);
+}
+
+.card-about {
+  transform: translate3d(-100%, 0, 0);
+}
+
+.card-contact {
+  transform: translate3d(100%, 0, 0);
+}
+
+.card-portfolio {
+  transform: translate3d(0, -100%, 0);
+}
+
+.card-links {
+  transform: translate3d(0, 100%, 0);
+}
+
+.card-stage.dragging .hub-card {
+  transition: none;
+}
+
+.section-content {
+  width: min(86%, 720px);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding: 72px 0;
+}
+
+.section-content h2 {
+  margin: 0;
+  font-size: clamp(2.4rem, 8vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+}
+
+.section-lead {
+  max-width: 620px;
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.card-about {
+  background:
+    radial-gradient(circle at 10% 20%, rgba(36, 145, 255, .22), transparent 35%),
+    linear-gradient(145deg, #0d1726, #080d16 65%);
+}
+
+.card-contact {
+  background:
+    radial-gradient(circle at 90% 22%, rgba(116, 72, 255, .24), transparent 34%),
+    linear-gradient(145deg, #111527, #090c16 70%);
+}
+
+.card-portfolio {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(50, 159, 255, .24), transparent 38%),
+    linear-gradient(160deg, #0c1828, #070b12 68%);
+}
+
+.card-links {
+  background:
+    radial-gradient(circle at 60% 100%, rgba(108, 73, 255, .25), transparent 34%),
+    linear-gradient(160deg, #0c1321, #070a11 68%);
+}
+
+.info-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.info-tile {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255,255,255,.045);
+  backdrop-filter: blur(14px);
+}
+
+.info-tile span,
+.contact-row span,
+.project-card span,
+.link-card small {
+  color: var(--muted);
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.info-tile strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1rem;
+}
+
+.contact-list,
+.project-list {
+  margin-top: 34px;
+  display: grid;
+  gap: 12px;
+}
+
+.contact-row,
+.project-card {
+  text-decoration: none;
+  color: inherit;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255,255,255,.045);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.contact-row strong,
+.project-card strong {
+  font-size: 1rem;
+}
+
+.project-card div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-card b {
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.link-card {
+  min-height: 150px;
+  padding: 18px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: rgba(255,255,255,.045);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.link-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  margin-bottom: auto;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.back-home {
+  position: absolute;
+  z-index: 8;
+  border: 0;
+  background: transparent;
+  color: rgba(255,255,255,.72);
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  cursor: pointer;
+}
+
+.back-right {
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.back-left {
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.back-bottom {
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+}
+
+.back-top {
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 800px) {
+  .viewport {
+    width: min(100%, 1180px);
+    height: min(78vh, 760px);
+    min-height: 680px;
+    border-radius: 36px;
+    box-shadow:
+      0 40px 100px rgba(0,0,0,.45),
+      0 0 0 1px rgba(255,255,255,.05);
+  }
+
+  .hub-card {
+    min-height: 100%;
+    border-radius: 36px;
+  }
+
+  .profile-card {
+    width: 100%;
+    min-height: 100%;
+    border-radius: 36px;
+    box-shadow: none;
+  }
+
+  .links-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Back navigation: arrows only */
+.back-home {
+  font-size: 1.45rem;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: .78;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.back-home:hover {
+  opacity: 1;
+}
+
+/* Configurable assets */
+
+:root {
+  --card-radius: 36px;
+}
+
+.viewport,
+.hub-card {
+  border-radius: var(--card-radius);
+}
+
+.link-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: inherit;
+}
+
+.project-card {
+  overflow: hidden;
+}
+
+.project-thumb {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.project-card small {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: .8rem;
+  line-height: 1.35;
+}
+
+/* Matching vertical double-chevron gesture indicators */
+.double-chevron {
+  display: inline-block;
+  position: relative;
+}
+
+.double-chevron.vertical {
+  width: 14px;
+  height: 18px;
+}
+
+.double-chevron.vertical::before,
+.double-chevron.vertical::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-left: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+}
+
+.double-chevron.up::before {
+  top: 2px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.double-chevron.up::after {
+  top: 8px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.double-chevron.down::before {
+  top: 1px;
+  transform: translateX(-50%) rotate(225deg);
+}
+
+.double-chevron.down::after {
+  top: 7px;
+  transform: translateX(-50%) rotate(225deg);
+}
+
+/* Unified double-chevron gesture controls */
+.gesture-chevrons {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+}
+
+.gesture-chevrons::before,
+.gesture-chevrons::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+}
+
+/* << */
+.gesture-chevrons.left::before {
+  left: 7px;
+  top: 6px;
+  transform: rotate(-45deg);
+}
+
+.gesture-chevrons.left::after {
+  left: 12px;
+  top: 6px;
+  transform: rotate(-45deg);
+}
+
+/* >> */
+.gesture-chevrons.right::before {
+  left: 1px;
+  top: 6px;
+  transform: rotate(135deg);
+}
+
+.gesture-chevrons.right::after {
+  left: 6px;
+  top: 6px;
+  transform: rotate(135deg);
+}
+
+/* double up chevron */
+.gesture-chevrons.up::before {
+  left: 6px;
+  top: 8px;
+  transform: rotate(45deg);
+}
+
+.gesture-chevrons.up::after {
+  left: 6px;
+  top: 13px;
+  transform: rotate(45deg);
+}
+
+/* double down chevron */
+.gesture-chevrons.down::before {
+  left: 6px;
+  top: 0;
+  transform: rotate(225deg);
+}
+
+.gesture-chevrons.down::after {
+  left: 6px;
+  top: 5px;
+  transform: rotate(225deg);
+}
+
+.back-home {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  display: grid;
+  place-items: center;
+}
+
+/* Home screen uses the same gesture chevrons as back navigation */
+.swipe-indicator .gesture-chevrons {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+
+.swipe-up .gesture-chevrons,
+.swipe-down .gesture-chevrons {
+  width: 20px;
+  height: 20px;
+}
+
+.swipe-left .gesture-chevrons,
+.swipe-right .gesture-chevrons {
+  width: 20px;
+  height: 20px;
+}
+
+/* Prevent old arrow styling from affecting chevrons */
+.swipe-indicator strong {
+  display: none;
+}
+
+/* Correct left-facing gesture chevrons */
+.gesture-chevrons.left {
+  transform: scaleX(-1);
+}
+
+/* Final deterministic chevron geometry */
+.gesture-chevrons {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.gesture-chevrons::before,
+.gesture-chevrons::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border: 0;
+}
+
+/* LEFT << */
+.gesture-chevrons.left::before,
+.gesture-chevrons.left::after {
+  border-left: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  top: 5px;
+}
+
+.gesture-chevrons.left::before {
+  left: 4px;
+}
+
+.gesture-chevrons.left::after {
+  left: 9px;
+}
+
+/* RIGHT >> */
+.gesture-chevrons.right::before,
+.gesture-chevrons.right::after {
+  border-right: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: rotate(45deg);
+  top: 5px;
+}
+
+.gesture-chevrons.right::before {
+  left: 2px;
+}
+
+.gesture-chevrons.right::after {
+  left: 7px;
+}
+
+/* UP */
+.gesture-chevrons.up::before,
+.gesture-chevrons.up::after {
+  border-left: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: rotate(45deg);
+  left: 5px;
+}
+
+.gesture-chevrons.up::before {
+  top: 4px;
+}
+
+.gesture-chevrons.up::after {
+  top: 9px;
+}
+
+/* DOWN */
+.gesture-chevrons.down::before,
+.gesture-chevrons.down::after {
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  left: 5px;
+}
+
+.gesture-chevrons.down::before {
+  top: 2px;
+}
+
+.gesture-chevrons.down::after {
+  top: 7px;
+}
+
+/* Kill any previous transforms from earlier patches */
+.gesture-chevrons.left,
+.gesture-chevrons.right,
+.gesture-chevrons.up,
+.gesture-chevrons.down {
+  transform: none !important;
+}
+
+/* Move side-section back controls to the top on smaller screens */
+@media (max-width: 799px) {
+  .card-about .back-right,
+  .card-contact .back-left {
+    top: 14px;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translateX(-50%);
+  }
+
+  .card-about .back-right .gesture-chevrons {
+    transform: rotate(-90deg) !important;
+  }
+
+  .card-contact .back-left .gesture-chevrons {
+    transform: rotate(90deg) !important;
+  }
+
+  .card-about .section-content,
+  .card-contact .section-content {
+    padding-top: 82px;
+  }
+}
+
+/* Phone + tablet: park side-section return chevrons in top corners */
+@media (max-width: 1099px) {
+
+  .card-about .back-right {
+    top: 14px;
+    right: 14px;
+    left: auto;
+    bottom: auto;
+    transform: none;
+  }
+
+  .card-contact .back-left {
+    top: 14px;
+    left: 14px;
+    right: auto;
+    bottom: auto;
+    transform: none;
+  }
+
+  .card-about .back-right .gesture-chevrons {
+    transform: none !important;
+  }
+
+  .card-contact .back-left .gesture-chevrons {
+    transform: none !important;
+  }
+
+  .card-about .section-content,
+  .card-contact .section-content {
+    padding-top: 78px;
+  }
+}
+
+/* Compact social list */
+.links-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+  margin-top: 30px;
+}
+
+.social-row {
+  min-height: 64px;
+  padding: 10px 14px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+
+  text-decoration: none;
+  color: inherit;
+
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: rgba(255,255,255,.045);
+  backdrop-filter: blur(12px);
+}
+
+.social-icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+
+  border-radius: 11px;
+  background: var(--accent-soft);
+  color: var(--accent);
+
+  font-size: .9rem;
+  font-weight: 900;
+
+  overflow: hidden;
+}
+
+.social-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.social-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.social-copy strong {
+  font-size: .92rem;
+}
+
+.social-copy small {
+  color: var(--muted);
+  font-size: .72rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.social-row b {
+  color: var(--accent);
+  font-size: 1.05rem;
+}
+
+/* Tablet can use two compact columns if there are many socials */
+@media (min-width: 600px) {
+  .card-links .links-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Desktop can comfortably show more without giant cards */
+@media (min-width: 1000px) {
+  .card-links .links-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+}
+
+/* Social section: compact high-capacity layout */
+.card-links .section-content {
+  justify-content: flex-start;
+  padding-top: 72px;
+  padding-bottom: 54px;
+}
+
+.card-links .eyebrow {
+  margin-bottom: 18px;
+}
+
+.card-links .links-grid {
+  margin-top: 0;
+  gap: 7px;
+}
+
+.social-row {
+  min-height: 52px;
+  padding: 7px 11px;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 10px;
+  border-radius: 13px;
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  font-size: .78rem;
+}
+
+.social-copy {
+  gap: 1px;
+}
+
+.social-copy strong {
+  font-size: .84rem;
+}
+
+.social-copy small {
+  font-size: .64rem;
+}
+
+.social-row b {
+  font-size: .92rem;
+}
+
+@media (max-width: 599px) {
+  .card-links .section-content {
+    width: 84%;
+    padding-top: 58px;
+    padding-bottom: 42px;
+    overflow-y: auto;
+  }
+
+  .card-links .links-grid {
+    gap: 6px;
+  }
+
+  .social-row {
+    min-height: 48px;
+    padding: 6px 9px;
+  }
+
+  .social-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Slimmer About info cards */
+.card-about .info-grid {
+  gap: 9px;
+  margin-top: 26px;
+}
+
+.card-about .info-tile {
+  padding: 14px 16px;
+  border-radius: 14px;
+}
+
+.card-about .info-tile span {
+  font-size: .68rem;
+}
+
+.card-about .info-tile strong {
+  margin-top: 4px;
+  font-size: .92rem;
+}
+
+/* Give four About items room without feeling stacked */
+@media (min-width: 600px) {
+  .card-about .info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Customizable Share button */
+.action-button.secondary {
+  background: var(--share-bg, rgba(255,255,255,.07));
+  color: var(--share-text, var(--text));
+}
+
+/* =========================================================
+   Per-section text customization
+   ========================================================= */
+
+.card-about {
+  color: var(--about-text, var(--text));
+}
+
+.card-contact {
+  color: var(--contact-text, var(--text));
+}
+
+.card-portfolio {
+  color: var(--portfolio-text, var(--text));
+}
+
+.card-links {
+  color: var(--social-text, var(--text));
+}
+
+/* Muted text inherits a softer version of each section color */
+.card-about .section-lead,
+.card-about .info-tile span {
+  color: color-mix(
+    in srgb,
+    var(--about-text, var(--text)) 68%,
+    transparent
+  );
+}
+
+.card-contact .contact-row span {
+  color: color-mix(
+    in srgb,
+    var(--contact-text, var(--text)) 68%,
+    transparent
+  );
+}
+
+.card-portfolio .project-card span,
+.card-portfolio .project-card small {
+  color: color-mix(
+    in srgb,
+    var(--portfolio-text, var(--text)) 68%,
+    transparent
+  );
+}
+
+.card-links .social-copy small {
+  color: color-mix(
+    in srgb,
+    var(--social-text, var(--text)) 68%,
+    transparent
+  );
+}
+
+/* Main content follows chosen section color */
+.card-about h2,
+.card-about .info-tile strong {
+  color: var(--about-text, var(--text));
+}
+
+.card-contact h2,
+.card-contact .contact-row strong {
+  color: var(--contact-text, var(--text));
+}
+
+.card-portfolio h2,
+.card-portfolio .project-card strong {
+  color: var(--portfolio-text, var(--text));
+}
+
+.card-links .social-copy strong {
+  color: var(--social-text, var(--text));
+}
+
+
+/* =========================================================
+   Customizable profile picture border gradient
+   ========================================================= */
+
+.avatar-wrap {
+  background:
+    linear-gradient(
+      var(--avatar-border-angle, 135deg),
+      var(--avatar-border-start, #f8fafc),
+      var(--avatar-border-end, #62a8ff)
+    );
+}
+
+/* =========================================================
+   Internal section scrolling
+   ========================================================= */
+
+.card-about .section-content,
+.card-contact .section-content,
+.card-portfolio .section-content,
+.card-links .section-content {
+  max-height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+
+  /*
+    Horizontal gestures remain available to ProHUB while
+    vertical movement can scroll section content.
+  */
+  touch-action: pan-y;
+}
+
+/* Keep some breathing room after long content */
+.card-about .section-content::after,
+.card-contact .section-content::after,
+.card-portfolio .section-content::after,
+.card-links .section-content::after {
+  content: "";
+  display: block;
+  height: 24px;
+  flex: 0 0 24px;
+}
+
+/* Hide ugly browser scrollbars while retaining scrolling */
+.card-about .section-content,
+.card-contact .section-content,
+.card-portfolio .section-content,
+.card-links .section-content {
+  scrollbar-width: none;
+}
+
+.card-about .section-content::-webkit-scrollbar,
+.card-contact .section-content::-webkit-scrollbar,
+.card-portfolio .section-content::-webkit-scrollbar,
+.card-links .section-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Destination navigation stays fixed above scrolling content */
+.back-home {
+  position: absolute;
+  z-index: 20;
+}
+
+/* Long mobile sections get full usable vertical space */
+@media (max-width: 799px) {
+  .card-about .section-content,
+  .card-contact .section-content,
+  .card-portfolio .section-content,
+  .card-links .section-content {
+    height: 100%;
+    max-height: 100%;
+  }
+}
+
+/* =========================================================
+   Fix adjacent swipe cards bleeding into smaller viewports
+   ========================================================= */
+
+.hub-card,
+.profile-card.hub-card {
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
+
+.card-stage {
+  overflow: hidden;
+}
+
+.viewport {
+  overflow: hidden;
+}
+
+/* Fine-tune top gesture cue inside phone-sized layouts */
+@media (max-width: 430px) {
+  .card-home .swipe-up {
+    top: 22px;
+  }
+}
+
+/* =========================================================
+   Contact QR code
+   ========================================================= */
+
+.contact-qr {
+  width: fit-content;
+  margin: 24px auto 0;
+  text-align: center;
+}
+
+.contact-qr[hidden] {
+  display: none;
+}
+
+.qr-code {
+  width: 142px;
+  height: 142px;
+  padding: 7px;
+  margin: 0 auto;
+
+  display: grid;
+  place-items: center;
+
+  background: #fff;
+  border-radius: 16px;
+
+  box-shadow:
+    0 14px 36px rgba(0,0,0,.22);
+}
+
+.qr-code img,
+.qr-code canvas {
+  display: block;
+  width: 128px !important;
+  height: 128px !important;
+}
+
+.contact-qr p {
+  margin: 9px 0 0;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--contact-text, var(--text));
+  opacity: .72;
+}
+
+/* Keep QR compact on phones */
+@media (max-width: 430px) {
+  .contact-qr {
+    margin-top: 24px;
+  }
+
+  .qr-code {
+    width: 124px;
+    height: 124px;
+    padding: 6px;
+  }
+
+  .qr-code img,
+  .qr-code canvas {
+    width: 112px !important;
+    height: 112px !important;
+  }
+}
+
+/* Custom QR image fits the same ProHUB frame */
+.custom-qr-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* =========================================================
+   Reliable custom card background images
+   ========================================================= */
+
+.hub-card {
+  isolation: isolate;
+}
+
+/*
+  Custom image sits above the card's base gradient,
+  but underneath the existing overlays/content.
+*/
+.hub-card.has-custom-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  z-index: -2;
+
+  background-image: var(--custom-background-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/*
+  Preserve readability over uploaded imagery.
+*/
+.hub-card.has-custom-background .card-overlay {
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(4, 8, 15, .22),
+      rgba(4, 8, 15, .58)
+    );
+}
+
+/*
+  Home already has a decorative grid pseudo-element.
+  Put the image beneath that grid.
+*/
+.card-home.has-custom-background::after {
+  z-index: -4;
+}
+
+/* Admin-driven card backgrounds override original section backgrounds */
+.card-home,
+.card-about,
+.card-contact,
+.card-portfolio,
+.card-links {
+  background-color: var(--bg);
+}
+
+/* Existing section declarations remain as fallbacks only.
+   Inline styles from app.js now control the live background. */
+
+/* =========================================================
+   Customizable Home navigation
+   ========================================================= */
+
+.card-home .swipe-indicator,
+.card-home .swipe-indicator span,
+.card-home .gesture-chevrons {
+  color: var(--home-nav, var(--accent));
+}
+
+/* Chevrons are often drawn with borders rather than text */
+.card-home .gesture-chevrons::before,
+.card-home .gesture-chevrons::after {
+  border-color: var(--home-nav, var(--accent));
+}
+
+
+/* PROHUB SOCIAL LINK HOVER */
+
+.social-row {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.social-row:hover {
+  transform: translateY(-2px);
+  border-color: rgba(98, 168, 255, 0.48);
+  background-color: rgba(98, 168, 255, 0.08);
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.20),
+    0 0 0 1px rgba(98, 168, 255, 0.08);
+}
+
+.social-row .social-icon {
+  transition:
+    transform 180ms ease,
+    filter 180ms ease;
+}
+
+.social-row:hover .social-icon {
+  transform: scale(1.06);
+}
+
+.social-row b {
+  transition:
+    transform 180ms ease,
+    color 180ms ease;
+}
+
+.social-row:hover b {
+  transform: translateX(3px);
+}
+
+@media (hover: none) {
+  .social-row:hover {
+    transform: none;
+  }
+}
+
